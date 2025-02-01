@@ -7,21 +7,12 @@
         </div>
         <div class="bottom-section flex-grow-4 d-flex align-items-center justify-content-center">
           <div class="button-group" :style="{ gap: buttonGap + 'px' }">
-            <button
-              @click="onYes"
-              :style="{ transform: 'scale(' + yesButtonScale + ')' }"
-              class="btn btn-success btn-lg"
-              aria-label="Yes, I will be your Valentine"
-            >
+            <button @click="onYes" :style="{ transform: 'scale(' + yesButtonScale + ')' }"
+              class="btn btn-success btn-lg" aria-label="Yes, I will be your Valentine">
               Yes
             </button>
-            <button
-              ref="noButton"
-              @mouseover="evadeNoButton"
-              @click="onNo"
-              class="btn btn-danger btn-lg no-btn"
-              :style="runAway ? { position: 'absolute', top: noBtnPos.top + 'px', left: noBtnPos.left + 'px' } : {}"
-            >
+            <button ref="noButton" @mouseover="evadeNoButton" @click="onNo" class="btn btn-danger btn-lg no-btn"
+              :style="runAway ? { position: 'absolute', top: noBtnPos.top + 'px', left: noBtnPos.left + 'px' } : {}">
               {{ noButtonText }}
             </button>
           </div>
@@ -45,7 +36,7 @@ export default {
       yesButtonScale: 1,
       noClickCount: 0,
       noButtonText: "No",
-      currentVideo: "/src/assets/valentine.mp4",
+      currentVideo: "/assets/valentine.mp4",
       evasiveSound: null,
       noButtonTexts: [
         "No",
@@ -73,7 +64,7 @@ export default {
       this.responder = userName;
     },
     onYes() {
-      this.currentVideo = "/src/assets/celebration.mp4";
+      this.currentVideo = "/assets/celebration.mp4";
       this.sendTelegramMessage(`${this.responder} agreed to be your Valentine! 🎉`);
       setTimeout(() => {
         this.$router.push("/passcode");
@@ -87,7 +78,7 @@ export default {
       this.yesButtonScale += 0.5;
       this.buttonGap += 10;
       if (this.noClickCount === this.noButtonTexts.length - 1) {
-        this.sendTelegramMessage(`${this.responder} said No... 😢`);
+        this.sendTelegramMessage(`${this.responder} said No. 😢`);
         const noBtn = this.$refs.noButton;
         noBtn.style.position = "absolute";
         const containerRect = this.$el.getBoundingClientRect();
@@ -152,6 +143,7 @@ export default {
   margin: 0;
   height: 100vh;
 }
+
 .left-column {
   background-color: #fff0f5;
   height: 100%;
@@ -160,6 +152,7 @@ export default {
   flex-direction: column;
   position: relative;
 }
+
 .right-column {
   background-color: #ffffff;
   height: 100%;
@@ -168,6 +161,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
+
 .top-section {
   flex: 1 1 20%;
   display: flex;
@@ -176,18 +170,21 @@ export default {
   position: relative;
   z-index: 1;
 }
+
 .bottom-section {
   flex: 4 1 80%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .button-group {
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
 }
+
 .btn {
   font-size: 1rem;
   padding: 10px 20px;
@@ -197,6 +194,7 @@ export default {
   text-align: center;
   white-space: nowrap;
 }
+
 .btn-success {
   background-color: #28a745;
   border: none;
@@ -204,10 +202,12 @@ export default {
   cursor: pointer;
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
+
 .btn-success:hover {
   background-color: #218838;
   transform: scale(1.1);
 }
+
 .btn-danger {
   background-color: #dc3545;
   border: none;
@@ -215,9 +215,11 @@ export default {
   cursor: pointer;
   transition: top 0.4s ease, left 0.4s ease, background-color 0.3s ease;
 }
+
 .btn-danger:hover {
   background-color: #c82333;
 }
+
 .valentine-text {
   font-family: "Indie Flower", cursive;
   font-size: 4rem;
@@ -227,29 +229,43 @@ export default {
   animation: fadeInUp 1.5s ease-in forwards 0.5s;
   margin-top: 15%;
 }
+
 @keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 .video-background {
   object-fit: contain;
   width: 100%;
   height: 100%;
 }
+
 @media (max-width: 767.98px) {
   .valentine-text {
     font-size: 1.5rem;
   }
+
   .button-group {
     gap: 10px;
   }
+
   .btn {
     font-size: 0.9rem;
     padding: 8px 15px;
   }
+
   .video-background {
     display: none;
   }
+
   .left-column,
   .right-column {
     width: 100%;

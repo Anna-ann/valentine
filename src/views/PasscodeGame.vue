@@ -5,14 +5,14 @@
     <div class="passcode-container">
       <div class="media-container">
         <template v-if="isPasscodeCorrect">
-          <img src="/src/assets/happy.gif" alt="Happy Animation" class="side-gif" />
+          <img src="/assets/happy.gif" alt="Happy Animation" class="side-gif" />
           <audio autoplay class="side-audio">
-            <source src="/src/assets/happy.mp3" type="audio/mpeg" />
+            <source src="/assets/happy.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         </template>
         <template v-else>
-          <img src="/src/assets/cat.jpg" alt="cat" class="side-image" />
+          <img src="/assets/cat.jpg" alt="cat" class="side-image" />
         </template>
       </div>
       <div>
@@ -106,20 +106,24 @@ export default {
   text-align: center;
   padding-top: 3%;
 }
+
 .spacer {
   margin: 60px 0;
 }
+
 .passcode-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6rem;
 }
+
 .media-container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .side-image,
 .side-gif {
   max-width: 600px;
@@ -130,9 +134,11 @@ export default {
   width: 400px;
   height: 400px;
 }
+
 .side-audio {
   display: none;
 }
+
 .passcode-display {
   font-size: 2rem;
   font-weight: bold;
@@ -145,12 +151,14 @@ export default {
   text-align: center;
   position: relative;
 }
+
 .dot-indicator {
   display: flex;
   justify-content: center;
   margin-top: 10px;
   gap: 5px;
 }
+
 .dot-indicator span {
   width: 10px;
   height: 10px;
@@ -158,39 +166,52 @@ export default {
   background-color: #ddd;
   transition: background-color 0.3s ease;
 }
+
 .dot-indicator span.filled {
   background-color: #ff3399;
 }
+
 .error-message {
   color: red;
   font-size: 1rem;
   margin-top: 5px;
   animation: fadeIn 0.5s ease;
 }
+
 .success-message {
   color: green;
   font-size: 1rem;
   margin-top: 5px;
   animation: fadeIn 0.5s ease;
 }
+
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
+
 .keypad {
   display: grid;
   grid-template-columns: repeat(3, 100px);
   gap: 10px;
   justify-content: center;
 }
-.keypad > button:nth-child(10) {
+
+.keypad>button:nth-child(10) {
   grid-column: 2;
 }
+
 .backspace-btn {
   grid-column: 3;
   background-color: #f0f0f0;
   color: #333;
 }
+
 button {
   font-size: 1.5rem;
   padding: 15px;
@@ -202,6 +223,7 @@ button {
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 }
+
 button:hover {
   background-color: #ffe6f0;
   transform: scale(1.1);

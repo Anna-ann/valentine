@@ -87,22 +87,16 @@
           <div class="rose-center"></div>
         </div>
       </div>
-      
+
     </div>
 
     <!-- Watering can -->
-    <div
-      v-if="!showButterflies"
-      class="watering-can"
-      :class="{ 'fade-in': wateringCanVisible }"
-      @mousedown="startWatering"
-      @mouseup="stopWatering"
-      @mousemove="waterFlowers"
-      :style="{ top: `${wateringCanPosition.y}px`, left: `${wateringCanPosition.x}px` }"
-    >
-      <div v-if="watering" class="water-droplets"></div>  
+    <div v-if="!showButterflies" class="watering-can" :class="{ 'fade-in': wateringCanVisible }"
+      @mousedown="startWatering" @mouseup="stopWatering" @mousemove="waterFlowers"
+      :style="{ top: `${wateringCanPosition.y}px`, left: `${wateringCanPosition.x}px` }">
+      <div v-if="watering" class="water-droplets"></div>
     </div>
-  
+
 
     <!-- Progress bar -->
     <div class="progress-container">
@@ -123,7 +117,7 @@ export default {
       watering: false,
       waterProgress: 0,
       showButterflies: false,
-      wateringCanPosition: { x: window.innerWidth - 400, y: window.innerHeight / 2 }, 
+      wateringCanPosition: { x: window.innerWidth - 400, y: window.innerHeight / 2 },
       showInstructions: true,
       wateringCanVisible: false,
     };
@@ -131,13 +125,13 @@ export default {
   mounted() {
     setTimeout(() => {
       this.wateringCanVisible = true;
-    }, 2000); 
+    }, 2000);
   },
   methods: {
     startWatering(event) {
       this.watering = true;
       this.updateWateringCanPosition(event);
-      this.hideInstructions(); 
+      this.hideInstructions();
     },
     stopWatering() {
       this.watering = false;
@@ -152,7 +146,7 @@ export default {
 
         if (this.waterProgress >= 100 && !this.showButterflies) {
           this.waterProgress = 100;
-          this.triggerButterflies(); 
+          this.triggerButterflies();
         }
       }
     },
@@ -161,8 +155,8 @@ export default {
       const offsetY = 25;
 
       this.wateringCanPosition = {
-        x: event.clientX - offsetX, 
-        y: event.clientY - offsetY, 
+        x: event.clientX - offsetX,
+        y: event.clientY - offsetY,
       };
     },
     triggerButterflies() {
@@ -175,23 +169,23 @@ export default {
 
       setTimeout(() => {
         this.$router.push("/question");
-      }, 6000); 
-  },
+      }, 6000);
+    },
     smoothScrollToTop(callback) {
       const duration = 1000;
-      const step = window.scrollY / (duration / 16); 
+      const step = window.scrollY / (duration / 16);
       const scrollAnimation = () => {
         if (window.scrollY > 0) {
           window.scrollBy(0, -step);
           requestAnimationFrame(scrollAnimation);
         } else if (callback) {
-          callback(); 
+          callback();
         }
       };
       scrollAnimation();
     },
     hideInstructions() {
-      this.showInstructions = false; 
+      this.showInstructions = false;
     },
   },
 };
@@ -204,11 +198,9 @@ export default {
 .landing-page {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(
-    to bottom,
-    #ffd6e0 0%,
-    #ff9ab5 100%
-  );
+  background: linear-gradient(to bottom,
+      #ffd6e0 0%,
+      #ff9ab5 100%);
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -217,18 +209,21 @@ export default {
 
 .valentine-text {
   font-family: "Indie Flower", cursive;
-  font-size: 5rem; 
+  font-size: 5rem;
   color: #ff3399;
-  text-shadow: 3px 3px 0 #fff, 5px 5px 5px rgba(0, 0, 0, 0.2); 
+  text-shadow: 3px 3px 0 #fff, 5px 5px 5px rgba(0, 0, 0, 0.2);
   opacity: 0;
   animation: fadeInUp 1.5s ease forwards 0.5s;
 }
 
 .valentine-text,
 .instruction-text {
-  pointer-events: none; /* Prevent interaction */
-  user-select: none; /* Disable text selection */
-  outline: none; /* Remove focus outline */
+  pointer-events: none;
+  /* Prevent interaction */
+  user-select: none;
+  /* Disable text selection */
+  outline: none;
+  /* Remove focus outline */
 }
 
 @keyframes fadeInUp {
@@ -236,6 +231,7 @@ export default {
     opacity: 0;
     transform: translateY(20px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -249,7 +245,7 @@ export default {
   color: #ff3399;
   text-align: center;
   margin-top: 0.5rem;
-  animation: fadeInUp 1.5s ease forwards 2s; 
+  animation: fadeInUp 1.5s ease forwards 2s;
   opacity: 0;
 }
 
@@ -257,6 +253,7 @@ export default {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -293,9 +290,12 @@ export default {
 }
 
 @keyframes moving-flower-1 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(-2.5rem) rotate(-20deg);
   }
+
   50% {
     transform: translateX(-2.5rem) rotate(-15deg);
   }
@@ -315,9 +315,12 @@ export default {
 }
 
 @keyframes moving-flower-3 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(2.5rem) rotate(20deg);
   }
+
   50% {
     transform: translateX(2.5rem) rotate(15deg);
   }
@@ -328,7 +331,8 @@ export default {
   position: relative;
   width: 0.5rem;
   height: 12rem;
-  background: #40a559; /* green */
+  background: #40a559;
+  /* green */
   transform-origin: bottom center;
   transform: scaleY(0);
   animation: growStem 1.5s forwards ease-in;
@@ -346,6 +350,7 @@ export default {
   0% {
     transform: scaleY(0);
   }
+
   100% {
     transform: scaleY(1);
   }
@@ -381,6 +386,7 @@ export default {
     transform: scale(0.1) rotate(0deg);
     opacity: 0;
   }
+
   100% {
     transform: scale(1);
     opacity: 1;
@@ -411,9 +417,11 @@ export default {
   0% {
     transform: translateX(-50%) scale(0);
   }
+
   75% {
     transform: translateX(-50%) scale(1.1);
   }
+
   100% {
     transform: translateX(-50%) scale(1);
   }
@@ -434,15 +442,19 @@ export default {
 .petal1 {
   transform: translate(-50%, -70%) rotate(0deg);
 }
+
 .petal2 {
   transform: translate(-50%, -70%) rotate(72deg);
 }
+
 .petal3 {
   transform: translate(-50%, -70%) rotate(144deg);
 }
+
 .petal4 {
   transform: translate(-50%, -70%) rotate(216deg);
 }
+
 .petal5 {
   transform: translate(-50%, -70%) rotate(288deg);
 }
@@ -473,9 +485,12 @@ export default {
 }
 
 @keyframes moving-flower-2 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: rotate(-5deg);
   }
+
   50% {
     transform: rotate(5deg);
   }
@@ -486,12 +501,10 @@ export default {
   position: relative;
   height: 40vmin;
   width: 1.5vmin;
-  background-image: linear-gradient(
-      to left,
+  background-image: linear-gradient(to left,
       rgba(0, 0, 0, 0.2),
       transparent,
-      rgba(255, 255, 255, 0.2)
-    ),
+      rgba(255, 255, 255, 0.2)),
     linear-gradient(to top, transparent 10%, #147a2c, #57c272);
   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
   animation: grow-flower-tree 4s forwards;
@@ -502,6 +515,7 @@ export default {
     height: 0;
     border-radius: 1vmin;
   }
+
   100% {
     height: 40vmin;
     border-radius: 0;
@@ -526,11 +540,13 @@ export default {
   animation: blooming-leaf-right var(--fl-speed) 1.6s backwards;
   transform: rotate(70deg) rotateY(30deg);
 }
+
 .flower__line__leaf--2 {
   top: 45%;
   animation: blooming-leaf-right var(--fl-speed) 1.4s backwards;
   transform: rotate(70deg) rotateY(30deg);
 }
+
 .flower__line__leaf--3,
 .flower__line__leaf--4,
 .flower__line__leaf--6 {
@@ -543,16 +559,19 @@ export default {
   animation: blooming-leaf-left var(--fl-speed) 1.2s backwards;
   transform: rotate(-70deg) rotateY(30deg);
 }
+
 .flower__line__leaf--4 {
   top: 40%;
   animation-delay: 1s;
 }
+
 .flower__line__leaf--5 {
   top: 0;
   transform-origin: left;
   animation: blooming-leaf-right var(--fl-speed) 1.8s backwards;
   transform: rotate(70deg) rotateY(30deg) scale(0.6);
 }
+
 .flower__line__leaf--6 {
   top: -2%;
   left: -450%;
@@ -576,9 +595,11 @@ export default {
     transform: scale(0);
     opacity: 0;
   }
+
   75% {
     transform: scale(1.1);
   }
+
   100% {
     transform: scale(1);
     opacity: 1;
@@ -603,12 +624,15 @@ export default {
 .flower__leaf--1 {
   transform: translate(-10%, 1%) rotateY(40deg) rotateX(-50deg);
 }
+
 .flower__leaf--2 {
   transform: translate(-50%, -4%) rotateX(40deg);
 }
+
 .flower__leaf--3 {
   transform: translate(-90%, 0%) rotateY(45deg) rotateX(50deg);
 }
+
 .flower__leaf--4 {
   width: 8vmin;
   height: 8vmin;
@@ -640,13 +664,11 @@ export default {
     width: 60%;
     height: 60%;
     border-radius: inherit;
-    background-image: repeating-linear-gradient(
-        135deg,
+    background-image: repeating-linear-gradient(135deg,
         rgba(0, 0, 0, 0.03) 0px,
         rgba(0, 0, 0, 0.03) 1px,
         transparent 1px,
-        transparent 12px
-      ),
+        transparent 12px),
       linear-gradient(90deg, rgb(255, 235, 18), rgb(255, 206, 0));
   }
 }
@@ -657,6 +679,7 @@ export default {
     transform-origin: left;
     transform: rotate(70deg) rotateY(30deg) scale(0);
   }
+
   100% {
     transform: rotate(70deg) rotateY(30deg) scale(1);
   }
@@ -667,6 +690,7 @@ export default {
     transform-origin: right;
     transform: rotate(-70deg) rotateY(30deg) scale(0);
   }
+
   100% {
     transform: rotate(-70deg) rotateY(30deg) scale(1);
   }
@@ -681,11 +705,11 @@ export default {
   /* place it a bit left of center to fit between the first rose and the blue flower */
   transform: translateX(-1rem) rotate(-10deg);
   transform-origin: bottom center;
-  animation: moving-tulip 4s linear infinite; 
+  animation: moving-tulip 4s linear infinite;
 }
 
 .flower--tulip2 {
-  transform: translateX(1.5rem) rotate(10deg); 
+  transform: translateX(1.5rem) rotate(10deg);
 }
 
 .flower--tulip2 .stem--tulip {
@@ -694,13 +718,16 @@ export default {
 }
 
 .flower--tulip2 .tulip-petal {
-  background: linear-gradient(to top, #ff4f4f, #ff8282); 
+  background: linear-gradient(to top, #ff4f4f, #ff8282);
 }
 
 @keyframes moving-tulip {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(-1rem) rotate(-10deg);
   }
+
   50% {
     transform: translateX(-1rem) rotate(-6deg);
   }
@@ -722,7 +749,7 @@ export default {
 /* 3) Tulip bloom container */
 .tulip-bloom {
   position: absolute;
-  bottom: 8rem;  
+  bottom: 8rem;
   left: 50%;
   transform: translateX(-50%) scale(0);
   animation: bloomTulip 1.5s forwards ease-out 1.5s;
@@ -730,7 +757,7 @@ export default {
 
 .flower--tulip2 .tulip-bloom {
   position: absolute;
-  bottom: 5rem;  
+  bottom: 5rem;
   left: 50%;
   transform: translateX(-50%) scale(0);
   animation: bloomTulip 3s forwards ease-out 3s;
@@ -740,9 +767,11 @@ export default {
   0% {
     transform: translateX(-50%) scale(0);
   }
+
   75% {
     transform: translateX(-50%) scale(1.1);
   }
+
   100% {
     transform: translateX(-50%) scale(1);
   }
@@ -753,8 +782,9 @@ export default {
   position: absolute;
   width: 1.8rem;
   height: 2.2rem;
-  background: linear-gradient(to top, #e24fff, #ff82e6); 
-  border-radius: 50% 50% 20% 20%; /* gives a "tulip" shape at the top */
+  background: linear-gradient(to top, #e24fff, #ff82e6);
+  border-radius: 50% 50% 20% 20%;
+  /* gives a "tulip" shape at the top */
   transform-origin: bottom center;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 }
@@ -795,10 +825,10 @@ export default {
 
 /* Watering can */
 .watering-can {
-  position: absolute; 
+  position: absolute;
   width: 5rem;
   height: 5rem;
-  background: url('/src/assets/watering-can.png') no-repeat center;
+  background: url('/assets/watering-can.png') no-repeat center;
   background-size: contain;
   cursor: pointer;
   z-index: 10;
@@ -812,7 +842,7 @@ export default {
 
 .watering-can {
   caret-color: transparent;
-  outline: none; 
+  outline: none;
   user-select: none;
   cursor: grab;
 }
@@ -826,6 +856,7 @@ export default {
     opacity: 0;
     transform: translateY(20px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -833,9 +864,12 @@ export default {
 }
 
 @keyframes hoverEffect {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.1);
   }
@@ -870,6 +904,7 @@ export default {
     transform: translate(-50%, 0) scaleY(1);
     opacity: 1;
   }
+
   100% {
     transform: translate(-50%, 2rem) scaleY(0.5);
     opacity: 0;
@@ -901,22 +936,28 @@ export default {
   left: 0;
   width: 100%;
   height: 60vh;
-  background: url("/src/assets/butterflies.gif") no-repeat center;
+  background: url("/assets/butterflies.gif") no-repeat center;
   background-size: contain;
   z-index: 10;
-  opacity: 0; /* Initially hidden */
-  animation: fadeInButterflies 3s ease-in forwards; /* Smooth fade-in */
+  opacity: 0;
+  /* Initially hidden */
+  animation: fadeInButterflies 3s ease-in forwards;
+  /* Smooth fade-in */
 }
 
 @keyframes fadeInButterflies {
   0% {
     opacity: 0;
-    transform: scale(0.9); /* Start slightly smaller for a growing effect */
+    transform: scale(0.9);
+    /* Start slightly smaller for a growing effect */
   }
+
   50% {
     opacity: 0.5;
-    transform: scale(1); /* Full size but still fading */
+    transform: scale(1);
+    /* Full size but still fading */
   }
+
   100% {
     opacity: 1;
   }
@@ -930,9 +971,9 @@ export default {
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }
 }
 </style>
-

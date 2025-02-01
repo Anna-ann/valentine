@@ -2,20 +2,9 @@
   <div class="date-selection">
     <h1 class="valentine-text">Choose Your Date</h1>
     <div class="date-options" :class="{ 'single-card': dateOptions.length <= 2 }">
-      <div
-        v-if="loading"
-        v-for="index in 3"
-        :key="'skeleton-' + index"
-        class="skeleton-card"
-      ></div>
-      <div
-        v-else
-        v-for="(date, index) in dateOptions"
-        :key="index"
-        class="date-card"
-        :class="{ 'center-card': isHorizontalCenter(index) }"
-        @click="openPopup(date.name)"
-      >
+      <div v-if="loading" v-for="index in 3" :key="'skeleton-' + index" class="skeleton-card"></div>
+      <div v-else v-for="(date, index) in dateOptions" :key="index" class="date-card"
+        :class="{ 'center-card': isHorizontalCenter(index) }" @click="openPopup(date.name)">
         <img :src="date.icon" :alt="date.name" class="icon" />
         <h2>{{ date.name }}</h2>
       </div>
@@ -39,15 +28,10 @@
           </button>
         </div>
         <div v-if="videoVisible" class="video-container">
-          <img src="/src/assets/cat.gif" alt="Cat GIF" class="centered-gif" />
+          <img src="/assets/cat.gif" alt="Cat GIF" class="centered-gif" />
           <audio ref="audioPlayer" :src="songUrl" autoplay></audio>
           <!-- Voucher image displayed below the video -->
-          <img
-            v-if="voucherImage"
-            :src="voucherImage"
-            alt="Voucher Image"
-            class="voucher-img"
-          />
+          <img v-if="voucherImage" :src="voucherImage" alt="Voucher Image" class="voucher-img" />
         </div>
       </div>
     </div>
@@ -59,18 +43,18 @@ export default {
   data() {
     return {
       dateOptions: [
-        { name: "Dinner", icon: "/src/assets/dinner.jpg" },
-        { name: "Arcade Game", icon: "/src/assets/arcade.jpg" },
-        { name: "Workshop", icon: "/src/assets/workshop.jpg" },
-        { name: "Spa", icon: "/src/assets/spa.jpg" },
-        { name: "Cinema", icon: "/src/assets/cinema.jpg" },
-        { name: "Mystery Date", icon: "/src/assets/mystery.jpg" },
+        { name: "Dinner", icon: "/assets/dinner.jpg" },
+        { name: "Arcade Game", icon: "/assets/arcade.jpg" },
+        { name: "Workshop", icon: "/assets/workshop.jpg" },
+        { name: "Spa", icon: "/assets/spa.jpg" },
+        { name: "Cinema", icon: "/assets/cinema.jpg" },
+        { name: "Mystery Date", icon: "/assets/mystery.jpg" },
       ],
       selectedDate: null,
       showPopup: false,
       videoVisible: false,
       loading: false,
-      songUrl: "/src/assets/girlfriend.mp3",
+      songUrl: "/assets/girlfriend.mp3",
       sendMessage: false,
     };
   },
@@ -79,12 +63,12 @@ export default {
       if (!this.selectedDate) return "";
       // Map the selected date to the corresponding voucher image.
       const mapping = {
-        "Dinner": "/src/assets/dinner.png",
-        "Arcade Game": "/src/assets/arcade.png",
-        "Workshop": "/src/assets/workshop.png",
-        "Spa": "/src/assets/spa.png",
-        "Cinema": "/src/assets/cinema.png",
-        "Mystery Date": "/src/assets/mystery.png",
+        "Dinner": "/assets/dinner.png",
+        "Arcade Game": "/assets/arcade.png",
+        "Workshop": "/assets/workshop.png",
+        "Spa": "/assets/spa.png",
+        "Cinema": "/assets/cinema.png",
+        "Mystery Date": "/assets/mystery.png",
       };
       return mapping[this.selectedDate] || "";
     },
@@ -291,6 +275,7 @@ export default {
     opacity: 0;
     transform: translateY(20px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -303,6 +288,7 @@ export default {
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
